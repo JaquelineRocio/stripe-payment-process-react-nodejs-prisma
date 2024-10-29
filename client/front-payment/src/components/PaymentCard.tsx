@@ -1,5 +1,5 @@
-import { useState } from "react";
-
+import React, { useState } from "react";
+import { createPaymentToken } from "../services/stripeService";
 const productos = [
   {
     id: "basico",
@@ -25,19 +25,20 @@ export default function PaymentCard() {
   const [productoSeleccionado, setProductoSeleccionado] = useState(
     productos[0]
   );
+
   const [estaProcesando, setEstaProcesando] = useState(false);
 
-  const manejarEnvio = (evento: React.FormEvent<HTMLFormElement>) => {
+  const manejarEnvio = async (evento: React.FormEvent<HTMLFormElement>) => {
     evento.preventDefault();
-    setEstaProcesando(true);
-    setTimeout(() => {
-      setEstaProcesando(false);
-      alert(
-        `¡Pago de $${productoSeleccionado.precio.toFixed(2)} por ${
-          productoSeleccionado.nombre
-        } procesado con éxito!`
-      );
-    }, 2000);
+
+    const token = await createPaymentToken();
+    setEstaProcesando(false);
+
+    if (token) {
+      alert(`¡Pago procesado con éxito! Token: ${token}`);
+    } else {
+      alert("Error al procesar el pago.");
+    }
   };
 
   return (
