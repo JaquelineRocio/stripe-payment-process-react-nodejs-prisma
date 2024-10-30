@@ -1,10 +1,10 @@
 import "./App.css";
-import PaymentCard from "./components/PaymentCard";
+import Products from "./components/Products";
 
 function App() {
   return (
     <>
-      <PaymentCard />
+      <Products />
     </>
   );
 }

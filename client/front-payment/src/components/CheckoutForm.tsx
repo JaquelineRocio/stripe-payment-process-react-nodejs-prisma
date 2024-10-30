@@ -51,7 +51,7 @@ export default function CheckoutForm() {
       };
 
       const response = await fetch(
-        "http://localhost:8080/api/checkouts",
+        "http://localhost:8080/api/payments/create-payment-intent",
         payload
       );
       const data = await response.json();
@@ -66,10 +66,10 @@ export default function CheckoutForm() {
       <CardSection />
       <button
         type="submit"
-        className="bg-green-950 text-white disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200"
-        disabled={!stripe || !elements} // Desactiva el botón si Stripe no está listo
+        className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+        disabled={!stripe || !elements}
       >
-        Confirm order
+        Pagar
       </button>
     </form>
   );
