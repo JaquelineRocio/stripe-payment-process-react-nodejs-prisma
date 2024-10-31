@@ -36,11 +36,10 @@ export default function CheckoutForm() {
       });
 
       if (error) {
-        console.error("Error creating payment method:", error.message);
-        return;
+        console.error(error);
+      } else {
+        console.log("PaymentMethod created successfully:", paymentMethod);
       }
-
-      console.log("Payment Method Created:", paymentMethod);
       const payload = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -51,7 +50,7 @@ export default function CheckoutForm() {
       };
 
       const response = await fetch(
-        "http://localhost:8080/api/payments/create-payment-intent",
+        "http://localhost:3000/api/payments/create-payment-intent",
         payload
       );
       const data = await response.json();

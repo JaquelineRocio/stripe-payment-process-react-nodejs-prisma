@@ -85,14 +85,6 @@ export default function Component() {
     );
   };
 
-  const handlePaymentSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    alert("¡Pago procesado con éxito!");
-    setIsPaymentModalOpen(false);
-    setCartItems([]);
-    setIsCartOpen(false);
-  };
-
   const total = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0
@@ -317,7 +309,7 @@ export default function Component() {
                 </button>
               </div>
 
-              <form onSubmit={handlePaymentSubmit} className="space-y-6">
+              <div className="space-y-6">
                 <div className="space-y-4">
                   <PaymentCard />
                 </div>
@@ -328,7 +320,7 @@ export default function Component() {
                     <span>${total.toLocaleString()}</span>
                   </div>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>
